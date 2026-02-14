@@ -77,16 +77,7 @@
                 opacity: 0;
             }
         }
-    </style>
-</head>
-<body>
-
-    <h1 id="question">Will you be my Valentine? 💖</h1>
-
-    <button id="yesBtn">Yes 💘</button>
-    <button id="noBtn">No 😢</button>
-
-<script>
+    <script>
     let yesBtn = document.getElementById("yesBtn");
     let noBtn = document.getElementById("noBtn");
     let question = document.getElementById("question");
@@ -96,6 +87,7 @@
     let yesClickCount = 0;
     let totalNoClicks = 0;
     let angryStage = 0;
+    let isTryAgainMode = false;
 
     function resetGame() {
         question.innerText = "Will you be my Valentine? 💖";
@@ -106,12 +98,18 @@
         yesClickCount = 0;
         totalNoClicks = 0;
         angryStage = 0;
+        isTryAgainMode = false;
         yesBtn.style.fontSize = yesSize + "rem";
         noBtn.style.fontSize = noSize + "rem";
         noBtn.style.position = "static";
     }
 
     yesBtn.addEventListener("click", function() {
+
+        if (isTryAgainMode) {
+            resetGame();
+            return;
+        }
 
         yesClickCount++;
 
@@ -128,9 +126,14 @@
 
     noBtn.addEventListener("click", function() {
 
+        if (isTryAgainMode) {
+            resetGame();
+            return;
+        }
+
         totalNoClicks++;
 
-        // After 10 total no clicks → angry progression
+        // Angry escalation after 10 clicks
         if (totalNoClicks >= 10) {
             angryStage++;
 
@@ -148,8 +151,7 @@
             question.innerText = "you dont love me 😭";
             yesBtn.innerText = "Try Again";
             noBtn.innerText = "Try Again";
-            yesBtn.onclick = resetGame;
-            noBtn.onclick = resetGame;
+            isTryAgainMode = true;
             return;
         }
 
@@ -169,19 +171,6 @@
         noBtn.style.top = randomY + "px";
     });
 
-    function createFloatingHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "💖";
-        heart.style.left = Math.random() * window.innerWidth + "px";
-        heart.style.fontSize = (20 + Math.random() * 30) + "px";
-        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
-    }
-
-    setInterval(createFloatingHeart, 500);
-
     function startHeartRain() {
         setInterval(() => {
             const rainHeart = document.createElement("div");
@@ -192,8 +181,8 @@
             setTimeout(() => rainHeart.remove(), 3000);
         }, 150);
     }
-
 </script>
+
 
 </body>
 </html>
