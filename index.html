@@ -44,20 +44,38 @@
     <button id="noBtn">No 😢</button>
 
     <script>
-        let yesBtn = document.getElementById("yesBtn");
-        let noBtn = document.getElementById("noBtn");
+    let yesBtn = document.getElementById("yesBtn");
+    let noBtn = document.getElementById("noBtn");
 
-        let yesSize = 1.2;
+    let yesSize = 1.2;
+    let noSize = 1.2;
 
-        noBtn.addEventListener("click", function() {
-            yesSize += 0.3;
-            yesBtn.style.fontSize = yesSize + "rem";
-        });
+    noBtn.addEventListener("click", function() {
+        // Make YES bigger
+        yesSize += 0.4;
+        yesBtn.style.fontSize = yesSize + "rem";
 
-        yesBtn.addEventListener("click", function() {
-            document.body.innerHTML = "<h1>YAY!!! 💕🥰</h1>";
-        });
-    </script>
+        // Make NO smaller
+        noSize -= 0.1;
+        if (noSize > 0.5) {
+            noBtn.style.fontSize = noSize + "rem";
+        }
+
+        // Move NO button randomly
+        let randomX = Math.floor(Math.random() * window.innerWidth);
+        let randomY = Math.floor(Math.random() * window.innerHeight);
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    });
+
+    yesBtn.addEventListener("click", function() {
+        document.body.innerHTML = "<h1>I love you my love 🥰💖</h1>";
+        document.body.style.backgroundColor = "#ffccd5";
+    });
+</script>
+
 
 </body>
 </html>
