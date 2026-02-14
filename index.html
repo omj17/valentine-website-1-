@@ -81,7 +81,7 @@
 </head>
 <body>
 
-    <h1 id="question">Will you be my Valentine? 💕</h1>
+    <h1 id="question">Will you be my Valentine? 💖</h1>
 
     <button id="yesBtn">Yes 💘</button>
     <button id="noBtn">No 😢</button>
@@ -98,7 +98,7 @@
     let angryStage = 0;
 
     function resetGame() {
-        question.innerText = "Will you be my Valentine? 💕";
+        question.innerText = "Will you be my Valentine? 💖";
         yesBtn.innerText = "Yes 💘";
         noBtn.innerText = "No 😢";
         yesSize = 1.2;
@@ -116,12 +116,12 @@
         yesClickCount++;
 
         if (yesClickCount === 1) {
-            question.innerText = "Do you really mean it? 🥺💕";
+            question.innerText = "Do you really mean it? 🥺💖";
             return;
         }
 
         if (yesClickCount === 2) {
-            document.body.innerHTML = "<h1 style='margin-top:100px;color:#d63384;'>I love you my love 🥰💕🥰💕</h1>";
+            document.body.innerHTML = "<h1 style='margin-top:100px;color:#d63384;'>I love you my love 🥰💖🥰💖</h1>";
             startHeartRain();
         }
     });
@@ -144,7 +144,7 @@
         }
 
         // 20% emotional twist (only before angry stage)
-        if (totalNoClicks < 10 && Math.random() < 0.05) {
+        if (totalNoClicks < 10 && Math.random() < 0.2) {
             question.innerText = "you dont love me 😭";
             yesBtn.innerText = "Try Again";
             noBtn.innerText = "Try Again";
